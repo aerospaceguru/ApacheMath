@@ -3,5 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/martin.oconnell/OneDrive - Lagan Specialist Contracting Group/Documents/00. General/03. CPD/Computer Programming/LIBRARIES/commons-math3-3.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martin.oconnell/OneDrive - Lagan Specialist Contracting Group/Documents/00. General/03. CPD/Computer Programming/LIBRARIES/xchart-3.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
