@@ -5,14 +5,14 @@ import org.apache.commons.math3.analysis.solvers.*;
 import org.knowm.xchart.*;
 
 public class Main {
+	
+	static double[] c = {-3, 2, 2, 1}; // Equation with coefficients in reverse order
 
 	public static void main(String[] args) {
 
 		long start = System.currentTimeMillis(); // calculation start time
 
 		// EXERCISE ONE - Polynomials and first derivatives
-		double[] c = {-2, 76, 4, 3}; // Equation with coefficients in reverse order
-
 		PolynomialFunction p = new PolynomialFunction(c);
 		System.out.println("The polynomial is: " + p.toString());
 		System.out.println("The first derivitive is: " + p.polynomialDerivative());
@@ -20,7 +20,7 @@ public class Main {
 
 		// EXERCISE TWO - Solving root of polynomials using LaguerreSolver algorithm inputting (iterations, function, intervalMin, intervalMax)
 		LaguerreSolver ls = new LaguerreSolver();
-		double result = ls.solve(1000, p, -100, 100);
+		double result = ls.solve(1000, p, -5, 5);
 		System.out.println("The first root of the polynomial along the interval is: " + result);
 		System.out.println("Polynomial evaluated with root is: " + p.value(result) + "\n");
 
@@ -41,8 +41,8 @@ public class Main {
 		XYChart chart = QuickChart.getChart("Sample Plotting Chart", "X Values", 
 				"Y Values", "y(x)", xVal, yVal); // creates the chart
 		new SwingWrapper(chart).displayChart(); // displays the chart
-
-
+		
+		
 		long end  = System.currentTimeMillis(); // calculation end time
 		System.out.println("\nCompute time is " + (end-start) + " ms"); // total calculation time
 
