@@ -42,7 +42,7 @@ public class Main {
 				"Y Values", "y(x)", xVal, yVal); // creates the chart
 		new SwingWrapper(chart).displayChart(); // displays the chart
 		
-		
+
 		long end  = System.currentTimeMillis(); // calculation end time
 		System.out.println("\nCompute time is " + (end-start) + " ms"); // total calculation time
 
