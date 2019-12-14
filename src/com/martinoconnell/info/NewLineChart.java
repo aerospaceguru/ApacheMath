@@ -7,20 +7,22 @@ import java.awt.Font;
 import java.io.IOException;
 
 import org.knowm.xchart.BitmapEncoder;
+import org.knowm.xchart.CSVImporter;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.demo.charts.ExampleChart;
 import org.knowm.xchart.style.Styler.LegendPosition;
 import org.knowm.xchart.BitmapEncoder.BitmapFormat;
+import org.knowm.xchart.CSVImporter.DataOrientation;
 import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
 
 
 public class NewLineChart implements ExampleChart<XYChart>{
 
-	
+
 	public static void main(String[] args) throws Exception {
-		
+
 		// Main code execution
 		ReadCSV read = new ReadCSV();
 		read.csvParser("./javaTest.csv");
@@ -28,19 +30,23 @@ public class NewLineChart implements ExampleChart<XYChart>{
 		ExampleChart<XYChart> exampleChart = new NewLineChart();
 		XYChart chart = exampleChart.getChart();
 		new SwingWrapper<XYChart>(chart).displayChart();
-	
+
 	}
 
 	@Override
 	public XYChart getChart() {
-		
+
 		ReadCSV r = new ReadCSV();
 		double[] x1Val = r.getListX1();
 		double[] y1Val = r.getListY1();
 
 		// Create Chart
-		XYChart chart = new XYChartBuilder().width(1000).height(600).title("Second Line Test Chart")
-				.xAxisTitle("X Values").yAxisTitle("Y Values").build();
+		// XYChart chart = new XYChartBuilder().width(1000).height(600).title("Second Line Test Chart")
+		//		.xAxisTitle("X Values").yAxisTitle("Y Values").build();
+
+		// import chart from a folder containing CSV files
+		XYChart chart =
+				CSVImporter.getChartFromCSVDir("C:\\Users\\martin.oconnell\\Desktop\\csv", DataOrientation.Columns, 900, 600);
 
 		// Customise chart
 		chart.getStyler().setLegendVisible(true);
@@ -59,17 +65,17 @@ public class NewLineChart implements ExampleChart<XYChart>{
 		// Add as many lines to the chart as required so long as the 'x' and 'y' array sizes match
 		chart.addSeries("Test Data", x1Val ,y1Val);
 
-		
+
 		// Save chart to current directory with file name "Sample_Chart_300_DPI.PNG"
 		try {
-			
+
 			BitmapEncoder.saveBitmapWithDPI(chart, "./Second_Line_Test_Chart_300_DPI", BitmapFormat.PNG, 300);
-			
+
 		} catch (IOException e) {
-			
+
 			System.out.println("An I/O eception has occured");
 			e.printStackTrace();
-			
+
 		}
 		return chart;
 	}
